@@ -8,8 +8,8 @@
 # pylint: disable=C0111,C0103
 
 import time
-#from pyrow import simpyrow as pyrow
-from pyrow import pyrow as pyrow
+from pyrow import simpyrow as pyrow
+# from pyrow import pyrow as pyrow
 from pyrow.ergmanager import ErgManager
 
 def new_erg_callback(erg):
@@ -26,10 +26,10 @@ def main():
     try:
         while True:
             time.sleep(1)
-        # a = input("0 to exit-->")
-        # print("{} was entered!\n".format(a))
-        # if a == '0':
-        #     break
+            # a = input("0 to exit-->")
+            # print("{} was entered!\n".format(a))
+            # if a == '0':
+            #     break
     except KeyboardInterrupt:
         ergman.stop()
 

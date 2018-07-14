@@ -11,7 +11,7 @@ import time
 from pyrow import simpyrow as pyrow
 from pyrow.ergmanager import ErgManager
 
-HOST = ''
+HOST = '192.168.178.215'
 PORT = 1347
 
 def send_socket(data_dict):
@@ -21,12 +21,14 @@ def send_socket(data_dict):
         s.sendall(json_payload.encode())
 
 def new_erg_callback(erg):
+    print("New erg",erg)
     send_socket(data_dict={
         'uid': str(erg),
         'data': "Added",
     })
 
 def update_erg_callback(erg):
+    print("Update erg",erg)
     send_socket(data_dict={
         'uid': str(erg),
         'data': erg.data,
@@ -36,8 +38,10 @@ def main():
     ergman = ErgManager(pyrow,
                         add_callback=new_erg_callback,
                         update_callback=update_erg_callback)
-    time.sleep(10)
-    ergman.stop()
+
+    # following stops the stream after 20 secs
+    # time.sleep(20)
+    # ergman.stop()
 
 if __name__ == "__main__":
     main()

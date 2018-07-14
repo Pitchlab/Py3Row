@@ -1,7 +1,6 @@
 import unittest
-from tests.basetest_pyrow import *
-from pyrow import pyrow
-from usb.core import NoBackendError, USBError
+from pyrow.tests.basetest_pyrow import *
+from pyrow import simpyrow as pyrow
 
 
 class TestFind(unittest.TestCase):
@@ -9,13 +8,6 @@ class TestFind(unittest.TestCase):
         testfind_noerror(self, pyrow)
 
 
-valid_env = True
-try:
-    ergs = pyrow.find()
-    valid_env = len(list(pyrow.find())) > 0
-except (NoBackendError, USBError):
-    valid_env = False
-@unittest.skipIf(not valid_env, "Skipping tests, no ergs")
 class TestPyErg(unittest.TestCase):
     def setUp(self):
         testpyerg_setUp(self, pyrow)
@@ -28,6 +20,7 @@ class TestPyErg(unittest.TestCase):
 
     def test_get_workout(self):
         testpyerg_get_workout(self, pyrow)
+
 
 if __name__ == '__main__':
     unittest.main()

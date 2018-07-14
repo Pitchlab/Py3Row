@@ -29,7 +29,6 @@ class ErgManager(object):
         self.check_rate = check_rate
         self.update_rate = update_rate
 
-
         self._devices = []
         self.ergs = []
 
